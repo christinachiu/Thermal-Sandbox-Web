@@ -1,5 +1,9 @@
 # Digital Thermal Sandbox — Data
 
+## 🔗 Live app
+
+**https://genenv.github.io/Thermal-Sandbox-Web/**
+
 Two JSON files drive the entire Digital Thermal Sandbox interface. Everything you see —
 the ground, buildings, trees, and the colored "heat" field — is read from these two files
 at load time. Nothing is hard-coded in the app.
