@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "leesquare",
+  "label": "LEE SQUARE \u00b7 UBC",
+  "status": "live",
+  "_comment": "Category names + albedo are REAL (albedo from leesquare_web_geometry.json meta). tint/tess/tempOffsets are ANALOGICAL STARTERS mapped from the nearest King's Road material \u2014 retune these in Design. routes/proposals are empty pending authoring. load domain is data-derived (p2..p98 of the calibrated loads).",
+  "data": {
+    "geometryUrl": "leesquare_web_geometry.json",
+    "sensorUrl": "leesquare_sensor_data.json"
+  },
+  "openSkyKey": "kwh_m2_yr",
+  "referenceState": "baseline",
+  "frame": {
+    "_comment": "Camera framing for the multi-site engine (center/zoom/azimuth). King's Road omits this and uses engine defaults. Tune these + re-import; no engine edit needed. az is radians: ~0.785=SE; +/- 1.5708 rotates 90 degrees.",
+    "center": [-6.32, 0, -5.33],
+    "camHalf": 440,
+    "camMin": 320,
+    "az": 0.7854
+  },
+  "states": [
+    { "key": "baseline",    "label": "TODAY",      "source": "scenario_000", "status": "live" },
+    { "key": "scenario_01", "label": "PROPOSED",   "source": "scenario_002", "status": "live" },
+    { "key": "scenario_02", "label": "PROPOSED B", "source": "TBD",          "status": "pending",
+      "_note": "docked future slot \u2014 no data block required until status flips to 'live'; needs its own block in both JSONs first." }
+  ],
+  "categories": {
+    "short_grass":         { "label": "SHORT GRASS",        "ground": "#ffffff", "tint": "#ccd6b2", "tess": [0.88, 0.14, 0.45, 0.16], "albedo": 0.167, "_style": "starter\u2190grass" },
+    "tall_grass":          { "label": "TALL GRASS",         "ground": "#ffffff", "tint": "#c2cfa2", "tess": [0.86, 0.18, 0.55, 0.20], "albedo": 0.073, "_style": "starter\u2190grass (louder)" },
+    "grey_concrete":       { "label": "GREY CONCRETE",      "ground": "#ffffff", "tint": "#e6e2d2", "tess": [0.92, 0.02, 0.00, 0.02], "albedo": 0.332, "_style": "starter\u2190concrete_path" },
+    "asphalt_roadways":    { "label": "ASPHALT ROADWAYS",   "ground": "#ffffff", "tint": "#bcb7ae", "tess": [0.95, 0.04, 0.06, 0.05], "albedo": 0.237, "_style": "starter\u2190asphalt_road; albedo from grey_asphalt" },
+    "unit_paver_pathways": { "label": "UNIT PAVER PATHWAYS","ground": "#ffffff", "tint": "#d9cbb0", "tess": [0.82, 0.02, 0.00, 0.00], "albedo": 0.147, "_style": "starter\u2190unit_pavers; albedo from light_grey_unit_pavers" },
+    "stone_landscaping":   { "label": "STONE LANDSCAPING",  "ground": "#ffffff", "tint": "#ded3bd", "tess": [0.96, 0.12, 0.50, 0.13], "albedo": 0.341, "_style": "albedo from tan_small_stone_aggregate" }
+  },
+  "tempOffsets": {
+    "short_grass": -2.5, "tall_grass": -3.0, "grey_concrete": 1.2, "asphalt_roadways": 3.6,
+    "unit_paver_pathways": 2.0, "stone_landscaping": 0.8,
+    "_note": "placeholder offsets (analogical) \u2014 replaced when the real thermal run lands, per engine tempModel comment."
+  },
+  "metrics": {
+    "load":       { "domain": [0, 1100], "_note": "data-derived: calibrated loads span 1.4..1202.4, p2..p98 = 7.4..1049.8" },
+    "reduction":  { "domain": [0, 0.8], "_note": "starter \u2014 retune" },
+    "groundtemp": { "domain": [-8, 8] },
+    "sunhours":   { "domain": [300, 1400] },
+    "treehealth": { "domain": [0, 400] },
+    "_tempabs":   { "domain": [18, 52] }
+  },
+  "proposals": {},
+  "routes": {}
+}
