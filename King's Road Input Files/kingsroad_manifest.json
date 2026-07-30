@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "id": "kingsroad",
+  "label": "KING'S ROAD \u00b7 FORT GARRY",
+  "status": "live",
+  "_comment": "All values lifted verbatim from engine-v2.js module constants (CATS, CAT_*, ROUTES, TEMP_OFF, METRIC domains). This manifest must reproduce King's Road byte-for-byte after the refactor.",
+  "data": {
+    "geometryUrl": "kingsroad_web_geometry.json",
+    "sensorUrl": "kingsroad_sensor_data.json"
+  },
+  "openSkyKey": "ghi_kwh_m2_yr",
+  "referenceState": "baseline",
+  "states": [
+    { "key": "baseline",    "label": "TODAY",    "source": "with-stores-building",    "status": "live" },
+    { "key": "scenario_01", "label": "PROPOSED", "source": "without-stores-building", "status": "live" }
+  ],
+  "categories": {
+    "grass":            { "label": "GRASS",             "ground": "#ffffff", "tint": "#ccd6b2", "tess": [0.88, 0.14, 0.45, 0.16], "albedo": 0.175 },
+    "concrete_path":    { "label": "CONCRETE PATH",     "ground": "#ffffff", "tint": "#e6e2d2", "tess": [0.92, 0.02, 0.00, 0.02], "albedo": 0.19 },
+    "asphalt_path":     { "label": "ASPHALT PATH",      "ground": "#ffffff", "tint": "#c8c4ba", "tess": [0.95, 0.04, 0.06, 0.05], "albedo": 0.084 },
+    "asphalt_road":     { "label": "ASPHALT ROAD",      "ground": "#ffffff", "tint": "#bcb7ae", "tess": [0.95, 0.04, 0.06, 0.05], "albedo": 0.17 },
+    "asphalt_parking":  { "label": "ASPHALT PARKING",   "ground": "#ffffff", "tint": "#d3cec0", "tess": [0.95, 0.04, 0.06, 0.05], "albedo": 0.232 },
+    "unit_pavers":      { "label": "UNIT PAVERS",       "ground": "#ffffff", "tint": "#d9cbb0", "tess": [0.82, 0.02, 0.00, 0.00], "albedo": 0.266 },
+    "stone_landscaping":{ "label": "STONE LANDSCAPING", "ground": "#ffffff", "tint": "#ded3bd", "tess": [0.96, 0.12, 0.50, 0.13], "albedo": 0.45 }
+  },
+  "tempOffsets": {
+    "grass": -2.5, "concrete_path": 1.2, "asphalt_path": 4.2, "asphalt_road": 3.6,
+    "asphalt_parking": 4.4, "unit_pavers": 2.0, "stone_landscaping": 0.8
+  },
+  "metrics": {
+    "load":       { "domain": [400, 1300] },
+    "reduction":  { "domain": [0, 0.75] },
+    "groundtemp": { "domain": [-8, 8] },
+    "sunhours":   { "domain": [300, 1400] },
+    "treehealth": { "domain": [0, 400] },
+    "_tempabs":   { "domain": [18, 52] }
+  },
+  "proposals": {
+    "asphalt_parking": [
+      { "label": "DEPAVE \u2192 UNIT PAVERS", "to": "unit_pavers" },
+      { "label": "DEPAVE \u2192 GRASS", "to": "grass" }
+    ],
+    "asphalt_path": [
+      { "label": "RESURFACE \u2192 CONCRETE", "to": "concrete_path" }
+    ]
+  },
+  "routes": {
+    "A": {
+      "name": { "baseline": "ROUTE A \u00b7 COMMUTER CUT-THROUGH", "scenario_01": "ROUTE A \u00b7 THROUGH THE NEW COMMONS" },
+      "pts": {
+        "baseline":    [[99,-3],[96,-20],[94,-38],[93.5,-60],[93.5,-84],[90.5,-96],[87,-122]],
+        "scenario_01": [[99,-3],[92,-24],[79,-42],[70,-62],[74,-88],[81,-105],[87,-122]]
+      }
+    },
+    "B": {
+      "name": { "baseline": "ROUTE B \u00b7 SHADE-SEEKER", "scenario_01": "ROUTE B \u00b7 SHADE-SEEKER" },
+      "pts": {
+        "baseline":    [[92,-89],[120,-88.5],[150,-87.5],[180,-86],[210,-84.5]],
+        "scenario_01": [[92,-89],[120,-88.5],[150,-87.5],[180,-86],[210,-84.5]]
+      }
+    },
+    "C": {
+      "name": { "baseline": "ROUTE C \u00b7 PARKING CROSSING", "scenario_01": "ROUTE C \u00b7 PARKING CROSSING" },
+      "pts": {
+        "baseline":    [[20,-78],[32,-62],[44,-46],[48.5,-33],[62,-27.5],[76,-27.5],[82,-28.5]],
+        "scenario_01": [[20,-78],[38,-60],[58,-44],[82,-30]]
+      }
+    }
+  }
+}
